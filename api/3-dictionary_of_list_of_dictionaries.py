@@ -16,7 +16,7 @@ if __name__ == "__main__":
         dict_user[user['id']] = []
         for task in tasks:
             dict_task = {"task": task["title"], "completed": task["completed"],
-                        "username": user["username"]}
+                         "username": user["username"]}
             dict_user[user["id"]].append(dict_task)
     with open("todo_all_employees.json", "w") as file:
         json.dump(dict_user, file)
