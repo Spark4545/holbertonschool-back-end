@@ -2,32 +2,27 @@
 """
 description of script
 """
-import json
 import requests
 import sys
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print(f"missing employee id in arguments")
-        sys.exit(1)
-
-    URL = "https://jsonplaceholder.typicode.com"
-    EMPLOYEE_ID = sys.argv[1]
-
-    EMPLOYEE_TODOS = requests.get(f"{URL}/users/{EMPLOYEE_ID}/todos",
-                                  params={"_expand": "user"})
-    data = EMPLOYEE_TODOS.json()
-
-    EMPLOYEE_NAME = data[0]["user"]["name"]
-    NUMBER_OF_DONE_TASKS = len(data)
-    TOTAL_NUMBER_OF_TASKS = 0
+    ID = sys.argv[1]
     TASK_TITLE = []
-    for task in data:
-        if task["completed"]:
-            NUMBER_OF_DONE_TASKS += 1
-            TASK_TITLE.append(task["title"])
+    NUMBER_OF_DONE_TASKS = 0
+    TOTAL_NUMBER_OF_TASKS = 0
+    URL_USER = "https://jsonplaceholder.typicode.com/users/" + id
+    RESULT = requests.get(URL_USER).json()
+    EMPLOYEE_NAME = requests.get('name')
+    TODOS = "https://jsonplaceholder.typicode.com/todos/"
+    TASK = requests.get(TODOS).json()
 
-    print(f"Employee {EMPLOYEE_NAME} is done with tasks"
-          f"({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):")
+    for item in TASK:
+        if item.get('userID') == int(ID):
+            if item.get('completed') is True:
+                TASK_TITLE.append(item['title'])
+                NUMBER_OF_DONE_TASKS += 1
+            TOTAL_NUMBER_OF_TASKS += 1
+    print(f'Employee {EMPLOYEE_NAME} is done with tasks'
+          f'({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):')
     for title in TASK_TITLE:
-        print("\t ", title)
+        print(f'\t {title}')
