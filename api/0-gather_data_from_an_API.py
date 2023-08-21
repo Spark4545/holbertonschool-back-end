@@ -5,12 +5,14 @@ description of script
 import requests
 import sys
 
+
 if __name__ == "__main__":
+
     ID = sys.argv[1]
     TASK_TITLE = []
     NUMBER_OF_DONE_TASKS = 0
     TOTAL_NUMBER_OF_TASKS = 0
-    URL_USER = "https://jsonplaceholder.typicode.com/users/" + id
+    URL_USER = "https://jsonplaceholder.typicode.com/users/" + ID
     RESULT = requests.get(URL_USER).json()
     EMPLOYEE_NAME = requests.get('name')
     TODOS = "https://jsonplaceholder.typicode.com/todos/"
