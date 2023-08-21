@@ -16,7 +16,7 @@ if __name__ == "__main__":
                                   params={"_expand": "user"})
     data = EMPLOYEE_TODOS.json()
 
-    EMPLOYEE_NAME = data[0]["user"]["name"]
+    EMPLOYEE_NAME = data[0]["user"]["username"]
     filename = f'{EMPLOYEE_ID}.csv'
 
     with open(filename, 'w', newline='') as file:
