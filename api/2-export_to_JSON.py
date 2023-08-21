@@ -20,7 +20,7 @@ if __name__ == "__main__":
     USER_TASK = {EMPLOYEE_ID: []}
     for task in data:
         dict_task = {"task": task["title"], "completed": task["completed"],
-                    "username": username}
+                     "username": username}
         USER_TASK[EMPLOYEE_ID].append(dict_task)
     filename = f'{EMPLOYEE_ID}.json'
     with open(filename, 'w') as file:
